@@ -1,0 +1,21 @@
+{
+  "name": "webcomponent",
+  "version": "1.0.0",
+  "description": "Bachelorarbeit webcomponent",
+  "source": "./src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass src/style/main.scss"
+  },
+  "author": "Fannese Tchanga",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "compiler": "^0.1.2",
+    "live": "^0.1.25-beta.0",
+    "sass": "^1.58.0"
+  },
+  "devDependencies": {
+    "node-sass": "^8.0.0"
+  }
+}
