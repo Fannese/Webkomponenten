@@ -1,0 +1,63 @@
+header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    background-color: blue;
+    color: #fff;
+    position: sticky;
+    top: 0;
+
+}
+.card-title{
+    text-align: center;
+    padding: 5px;
+    font-family: emoji;
+    font-size: 2rem;
+}
+.logo a{
+    font-size: 1.5rem;
+}
+.menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li{
+    display: inline-block;
+    margin-left: 20px;
+}
+.menu a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+}
+footer{
+    background-color: orange;
+    padding: 20px;
+    text-align: center;
+}
+@media screen and(max-width: 600px) {
+
+    header{
+       flex-direction: column;
+
+    }
+    .logo a{
+        font-size: 1.5rem;
+    }
+    .menu{
+       display: none;
+    }
+    .menu li{
+        display:block;
+        margin: 0;
+        border-bottom: 1px solid #fff;
+    }
+    .menu a{
+
+        padding: 10px 0;
+    }
+    
+}
