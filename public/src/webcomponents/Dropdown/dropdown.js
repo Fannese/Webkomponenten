@@ -62,8 +62,8 @@ align-items: flex-start;
 display: flex;
 }
 .details img{
-width: 280px;
-height: 300px;
+width: 480px;
+height: 500px;
 
 }
 ..details p{
@@ -84,15 +84,26 @@ display: flex;
 <p></p>
 
 </div>
+<ba-modal>
+ <h2 slot="modal-title">Bitte bestätigen um Details anzusehen!</h2>
+                <p slot="modal-text">
+                    “Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                </p>
+</ba-modal>
        `;
        this.details= this.shadowRoot.querySelector('.details');
        this.filmTitle=this.shadowRoot.querySelector('.details h2');
-   //   filmImage=this.shadowRoot.querySelector('.details img');
+      //this.filmImage=this.shadowRoot.querySelector('.details img');
        this.detailDescription=this.shadowRoot.querySelector('.details p');
    }
    connectedCallback(){
        //meine Elemente mit der DOM verbinden und freigeben
 this.loadData();
+
    }
    async loadData(){
       // console.log("data");
@@ -100,11 +111,12 @@ this.loadData();
            .then(response => response.json());
            console.log(resp)
        /*const data= await response.json();*/
-     this.render(resp.items);
+     this.render(resp.items);// übergabe der Daten an die render methode
 
    }
 
    render(items) {
+       const modal=document.querySelector('ba-modal');
        const menu = this.shadowRoot.querySelector('.dropdown-menü');
       items.forEach((item)=>{
            const link = document.createElement('a');
@@ -115,16 +127,21 @@ this.loadData();
                this.shadowRoot.querySelector('.details').appendChild(this.filmImage);
                this.showDetails(item);
            });
+
            menu.appendChild(link);
+
        });
+
    }
    //Detail Anschicht
    showDetails(item){
        this.filmTitle.textContent=item.title;
-    this.filmImage.src=item.image;
+       this.filmImage.src=item.image;
        this.detailDescription.textContent=item.description;
    }
+
     disconnectedCallback(){
+        this.loadData();
     }
 }
 customElements.define('ba-dropdown',Dropdown);

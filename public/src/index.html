@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webcomponent</title>
     <script src="webcomponents/Dropdown/dropdown.js" type="application/javascript"></script>
-  <link rel="stylesheet" href="assets/style/layout.css">
+    <script src="webcomponents/Modal/modal.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="assets/style/layout.css">
 </head>
 <style>
-    img{
+    img {
         height: 50px;
         width: 50px;
         border-radius: 1rem;
@@ -22,34 +23,30 @@
             <img class="navbar-brand" src="../assets/images/images.png">
         </a>
     </div>
-            <nav>
-                        <ul class="menu">
-                            <li><a class="navbar-brand" href="/index.html">Home</a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Features</a>
-                            </li>
-                        </ul>
-            </nav>
-    </header>
-        <div class="card-body">
-            <h2 class="card-title">The Movies Modul</h2>
+    <nav>
+        <ul class="menu">
+            <li><a class="navbar-brand" href="/index.html">Home</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="card-body">
+    <h2 class="card-title">The Movies Modul</h2>
 
-            <h1 class="card-text">Hello</h1>
-<div>
-    <ba-dropdown>
-<p> Für die Möglichen Angebotenen Filme anzusehen, öffnen Sie
-    das Dropdown-Menü und wählen Sie ihren passende Film aus
-Viel Spaß!
-</p>
-    </ba-dropdown>
-</div>
-            <ba-modal>
-                <h2>ich bin der komponent</h2>
-            </ba-modal>
-        </div>
-        <footer>
-            2 days ago
-        </footer>
+    <h1 class="card-text">Hello</h1>
+    <div>
+        <ba-dropdown>
+            <p> Für die Möglichen Angebotenen Filme anzusehen, öffnen Sie
+                das Dropdown-Menü und wählen Sie ihren passende Film aus
+                Viel Spaß!
+            </p>
+        </ba-dropdown>
     </div>
+    <footer>
+        2 days ago
+    </footer>
+</div>
 </body>
 </html>

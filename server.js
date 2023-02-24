@@ -12,6 +12,7 @@ app.get('/items', (req, res)=>{
 });*/
 
 app.use(express.static(path.join(__dirname +'/public/src')));
+//app.use(express.static(path.join(__dirname +'/public/src/webcomponents/Modal')));
 
 app.listen(PORT, () => {
     console.log('Server is running at:',PORT);
