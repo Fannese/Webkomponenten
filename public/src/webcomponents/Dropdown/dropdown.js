@@ -1,9 +1,9 @@
-class Dropdown extends HTMLElement{
-   constructor() {
-       super();
-       console.log('fineee');
-       this.attachShadow({mode:'open'});
-       this.shadowRoot.innerHTML=`
+class Dropdown extends HTMLElement {
+    constructor() {
+        super();
+        console.log('fineee');
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.innerHTML = `
 <style>
 .dropdown{
     position: relative;
@@ -95,53 +95,69 @@ display: flex;
                 </p>
 </ba-modal>
        `;
-       this.details= this.shadowRoot.querySelector('.details');
-       this.filmTitle=this.shadowRoot.querySelector('.details h2');
-      //this.filmImage=this.shadowRoot.querySelector('.details img');
-       this.detailDescription=this.shadowRoot.querySelector('.details p');
-   }
-   connectedCallback(){
-       //meine Elemente mit der DOM verbinden und freigeben
-this.loadData();
 
-   }
-   async loadData(){
-      // console.log("data");
-       const resp= await fetch("../webcomponents/Dropdown/service.json")
-           .then(response => response.json());
-           console.log(resp)
-       /*const data= await response.json();*/
-     this.render(resp.items);// übergabe der Daten an die render methode
+    }
 
-   }
-
-   render(items) {
-       const modal=document.querySelector('ba-modal');
-       const menu = this.shadowRoot.querySelector('.dropdown-menü');
-      items.forEach((item)=>{
-           const link = document.createElement('a');
-           link.setAttribute('href',"#");
-           link.textContent=item.name;
-           link.addEventListener('click',()=>{
-               this.filmImage =document.createElement('img');
-               this.shadowRoot.querySelector('.details').appendChild(this.filmImage);
-               this.showDetails(item);
-           });
-
-           menu.appendChild(link);
-
-       });
-
-   }
-   //Detail Anschicht
-   showDetails(item){
-       this.filmTitle.textContent=item.title;
-       this.filmImage.src=item.image;
-       this.detailDescription.textContent=item.description;
-   }
-
-    disconnectedCallback(){
+    connectedCallback() {
+        //meine Elemente mit der DOM verbinden und freigeben
         this.loadData();
+
+    }
+
+    async loadData() {
+        // console.log("data");
+        const resp = await fetch("../webcomponents/Dropdown/service.json")
+            .then(response => response.json());
+        console.log(resp);
+        this.render(resp.items);// übergabe der Daten an die render methode
+
+    }
+
+    render(items) {
+        const modal = this.shadowRoot.querySelector('ba-modal');
+        //const modalMainSection = document.createElement('section');
+        const menu = this.shadowRoot.querySelector('.dropdown-menü');
+        items.forEach((item) => {
+            const link = document.createElement('a');
+            link.setAttribute('href', "#");
+            link.textContent = item.name;
+            console.log('register clickEvent',item);
+            link.addEventListener('click', () => {
+                modal.setAttribute('opened', '');
+               // modalMainSection.innerHTML=`<slot name="modal-text"></slot>`;
+                modal.addEventListener('cancel',()=>{
+                    console.log('canceled.....');
+                })
+                this.details = this.shadowRoot.querySelector('.details');
+                this.details.innerHTML=``;
+                this.filmTitle = document.createElement('h2');
+                //this.filmImage=this.shadowRoot.querySelector('.details img');
+                this.detailDescription = document.createElement('p');
+                this.filmImage = document.createElement('img');
+                this.shadowRoot.querySelector('.details').appendChild(this.filmTitle);
+                this.shadowRoot.querySelector('.details').appendChild(this.detailDescription);
+                this.shadowRoot.querySelector('.details').appendChild(this.filmImage);
+
+                this.showDetails(item);
+            });
+
+            menu.appendChild(link);
+           // modal.appendChild(modalMainSection);
+
+        });
+
+    }
+
+    //Detail Anschicht
+    showDetails(item) {
+        this.filmTitle.textContent = item.title;
+        this.filmImage.src = item.image;
+        this.detailDescription.textContent = item.description;
+    }
+
+    disconnectedCallback() {
+        // this.loadData();
     }
 }
-customElements.define('ba-dropdown',Dropdown);
+
+customElements.define('ba-dropdown', Dropdown);

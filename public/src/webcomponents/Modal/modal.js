@@ -5,11 +5,65 @@ class Modal extends HTMLElement {
         this.attachShadow({mode: 'open'});
         //const template= document.createElement('template');
         this.shadowRoot.innerHTML = `
-        <style>
+    <style>
          ::slotted(header){
         padding: 2rem;
         border-bottom: 2px solid #ccc;
         }
+         :host([opened]) .modal, 
+         :host([opened]) .modal-backdrop{
+        opacity: 1;
+        pointer-events: all;
+        }
+        .modal-backdrop{
+         position: fixed;
+        top: 0px;
+        left: 0px;
+       width: 100%;
+       height: 100vh;
+       opacity: 0;
+       pointer-events: none;
+      
+       z-index: 10;
+        
+        }
+        .modal{
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        top: 10vh;
+        left: 25%;
+        width: 30%;
+        height: 30rem;
+        z-index: 100;
+        background: lightgreen;
+        border-radius: 3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        
+        }
+         #actions{
+        border-top: 1px solid #ccc;
+        padding: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        }
+        #actions button{
+        margin: 0 0.25rem;
+        }
+         #confirm-btn{
+         background-color: green;
+         }
+          ::slotted(h1){
+         font-size: 1rem;
+         margin: 0;
+         
+         }
+          ::slotted(p){
+         font-size: 1rem;
+         margin: 0;
+         padding: 1rem;
+         
+         }
        
 </style>
 <div class="modal-backdrop">
@@ -17,24 +71,27 @@ class Modal extends HTMLElement {
 <header><slot name="modal-title"></slot></header>
 <section id="actions">
         <button id="cancel-btn">Cancel</button>
-        <button id="confirm-btn">Confirm</button>
+        <button id="confirm-btn">Ok</button>
+</section>
+<section>
+<slot name="modal-text"></slot>
 </section>
 </div>
 </div>
 `;
-
         //this.shadowRoot.append(template.content.cloneNode(true));
         this.backdrop = this.shadowRoot.querySelector('.modal-backdrop');
         this.modalText = this.shadowRoot.querySelector('.modal');
         //this.mainSection=this.shadowRoot.querySelector('.main');
         const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
+        cancelButton.addEventListener('click', this._cancel.bind(this));
         const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
     }
 
-    showModal() {
+ /*showModal() {
         const bb = document.createElement('button');
         const mainSection = document.createElement('section');
-        bb.innerHTML = "jhja";
+        bb.innerHTML = "Click";
         bb.addEventListener('click', () => {
             mainSection.innerHTML = `
             <slot name="modal-text"></slot>
@@ -43,11 +100,23 @@ class Modal extends HTMLElement {
         })
         this.modalText.appendChild(mainSection);
         this.backdrop.appendChild(bb);
-    }
+    }*/
 
     connectedCallback() {
-        this.showModal();
+      //this.showModal();
     }
+    hide() {
+        if (this.hasAttribute('opened')) {
+            this.removeAttribute('opened');
+        }
+        this.isOpen = true;
+    }
+    _cancel(event) {
+        this.hide();
+        const cancelEvent= new Event('cancel',{bubbles:true, composed:true});
+        event.target.dispatchEvent(cancelEvent);
+    }
+
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (this.hasAttribute('opened')) {
