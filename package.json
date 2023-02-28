@@ -4,13 +4,11 @@
   "description": "Bachelorarbeit webcomponent",
   "source": "./src/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass public/src/assets/style/main.scss"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fannese Tchanga",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.2.3",
     "compiler": "^0.1.2",
     "express": "^4.18.2",
     "live": "^0.1.25-beta.0",

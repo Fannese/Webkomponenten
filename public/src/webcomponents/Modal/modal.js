@@ -55,37 +55,46 @@ class Modal extends HTMLElement {
          }
           ::slotted(h1){
          font-size: 1rem;
-         margin: 0;
-         
+         }
+         ::slotted(h2){
+         padding: 1rem;
+         margin: 0.5rem;
          }
           ::slotted(p){
          font-size: 1rem;
          margin: 0;
          padding: 1rem;
+         border-top: 1px solid #ccc;
          
+         }
+         @media screen and(min-width: 600px) {
+         .modal{
+          height: 60rem;
+         }
+        
          }
        
 </style>
 <div class="modal-backdrop">
 <div class="modal">
 <header><slot name="modal-title"></slot></header>
+
+<section>
+<slot name="modal-text"></slot>
+</section>
 <section id="actions">
         <button id="cancel-btn">Cancel</button>
         <button id="confirm-btn">Ok</button>
 </section>
-<section>
-<slot name="modal-text"></slot>
-</section>
 </div>
 </div>
 `;
-        //this.shadowRoot.append(template.content.cloneNode(true));
         this.backdrop = this.shadowRoot.querySelector('.modal-backdrop');
         this.modalText = this.shadowRoot.querySelector('.modal');
-        //this.mainSection=this.shadowRoot.querySelector('.main');
         const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
         cancelButton.addEventListener('click', this._cancel.bind(this));
         const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
+        confirmButton.addEventListener('click', this._confirm.bind(this));
     }
 
  /*showModal() {
@@ -115,6 +124,11 @@ class Modal extends HTMLElement {
         this.hide();
         const cancelEvent= new Event('cancel',{bubbles:true, composed:true});
         event.target.dispatchEvent(cancelEvent);
+    }
+    _confirm(event){
+        this.hide();
+        const confirmEvent=new Event('confirm',{bubbles:true, composed:true});
+        event.target.dispatchEvent(confirmEvent);
     }
 
 

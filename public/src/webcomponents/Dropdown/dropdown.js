@@ -17,9 +17,9 @@ class Dropdown extends HTMLElement {
     padding: 10px;
     font-size: 16px;
     transition: 1.5s;
-   left: 50%;
-   top: 50%;
-   transform: translate(70%, 50%);
+    left: 50%;
+    top: 50%;
+    transform: translate(70%, 50%);
 }
 .dropdown-toggle:hover{
     background-color: #eee;
@@ -32,7 +32,7 @@ class Dropdown extends HTMLElement {
     border-radius: 5px;
     padding:10px;
     display: none;
-  
+
 }
 .dropdown-menü a{
     display: block;
@@ -53,23 +53,34 @@ class Dropdown extends HTMLElement {
     font-family: sans-serif;
     padding: 2px;
     justify-content: center;
-   
-}
-.details{
-justify-content: space-between;
-flex-direction: column;
-align-items: flex-start;
-display: flex;
-}
-.details img{
-width: 480px;
-height: 500px;
 
 }
-..details p{
-align-items: flex-end;
-display: flex;
+.details{
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    display: flex;
+    align-self: center;
 }
+.details img{
+    width: 480px;
+    height: 500px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin: 2.5rem;
+    
+
+}
+.details p{
+    align-items: center;
+    display: flex;
+    margin: 1.5rem;
+    padding-top: 5rem;
+    font-size: 1.5rem;
+ 
+}
+.details h2{
+   display: flex;
+   position: absolute;
+   
 </style>
 <slot></slot>
 <div class="dropdown">
@@ -87,11 +98,16 @@ display: flex;
 <ba-modal>
  <h2 slot="modal-title">Bitte bestätigen um Details anzusehen!</h2>
                 <p slot="modal-text">
-                    “Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    We and our partners store and/or access information on a device, such as cookies 
+                    and process personal data, such as unique identifiers and standard information sent by 
+                    a device for personalised ads and content, ad and content measurement, and audience insights,
+                     as well as to develop and improve products. With your permission we and our partners may use
+                      precise geolocation data and identification through device scanning. You may click to consent 
+                      to our and our partners’ processing as described above. Alternatively you may click to refuse 
+                      to consent or access more detailed information and change your preferences before consenting. 
+                      Please note that some processing of your personal data may not require your consent, but you have
+                       a right to object to such processing. Your preferences will apply to this website only.
+                     You can change your preferences at any time by returning to this site or visit our privacy policy.
                 </p>
 </ba-modal>
        `;
@@ -124,25 +140,27 @@ display: flex;
             console.log('register clickEvent',item);
             link.addEventListener('click', () => {
                 modal.setAttribute('opened', '');
-               // modalMainSection.innerHTML=`<slot name="modal-text"></slot>`;
                 modal.addEventListener('cancel',()=>{
                     console.log('canceled.....');
+                    this.details = this.shadowRoot.querySelector('.details');
+                    this.details.innerHTML=``;
                 })
-                this.details = this.shadowRoot.querySelector('.details');
-                this.details.innerHTML=``;
-                this.filmTitle = document.createElement('h2');
-                //this.filmImage=this.shadowRoot.querySelector('.details img');
-                this.detailDescription = document.createElement('p');
-                this.filmImage = document.createElement('img');
-                this.shadowRoot.querySelector('.details').appendChild(this.filmTitle);
-                this.shadowRoot.querySelector('.details').appendChild(this.detailDescription);
-                this.shadowRoot.querySelector('.details').appendChild(this.filmImage);
+                modal.addEventListener('confirm',()=>{
+                    console.log('confirm');
+                    this.details = this.shadowRoot.querySelector('.details');
+                    this.details.innerHTML=``;
+                    this.filmTitle = document.createElement('h2');
+                    this.detailDescription = document.createElement('p');
+                    this.filmImage = document.createElement('img');
+                    this.shadowRoot.querySelector('.details').appendChild(this.filmTitle);
+                    this.shadowRoot.querySelector('.details').appendChild(this.detailDescription);
+                    this.shadowRoot.querySelector('.details').appendChild(this.filmImage);
+                    this.showDetails(item);
+                })
 
-                this.showDetails(item);
             });
 
             menu.appendChild(link);
-           // modal.appendChild(modalMainSection);
 
         });
 
