@@ -115,7 +115,7 @@ class Dropdown extends HTMLElement {
     }
 
     connectedCallback() {
-        //meine Elemente mit der DOM verbinden und freigeben
+
         this.loadData();
 
     }
@@ -131,7 +131,6 @@ class Dropdown extends HTMLElement {
 
     render(items) {
         const modal = this.shadowRoot.querySelector('ba-modal');
-        //const modalMainSection = document.createElement('section');
         const menu = this.shadowRoot.querySelector('.dropdown-menü');
         items.forEach((item) => {
             const link = document.createElement('a');

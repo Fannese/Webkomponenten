@@ -36,7 +36,7 @@ class Modal extends HTMLElement {
         width: 30%;
         height: 30rem;
         z-index: 100;
-        background: lightgreen;
+        background-color: orange;
         border-radius: 3px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
         
@@ -59,6 +59,7 @@ class Modal extends HTMLElement {
          ::slotted(h2){
          padding: 1rem;
          margin: 0.5rem;
+       
          }
           ::slotted(p){
          font-size: 1rem;
