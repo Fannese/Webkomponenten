@@ -25,12 +25,13 @@ class Dropdown extends HTMLElement {
     background-color: #eee;
 }
 .dropdown-menü{
-    position: absolute;
+    position: inherit;;
     z-index: 1;
     background-color: #fff;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     padding:10px;
+    margin: 5rem;
     display: none;
 
 }
@@ -136,7 +137,7 @@ class Dropdown extends HTMLElement {
             const link = document.createElement('a');
             link.setAttribute('href', "#");
             link.textContent = item.name;
-            console.log('register clickEvent',item);
+            //console.log('register clickEvent',item);
             link.addEventListener('click', () => {
                 modal.setAttribute('opened', '');
                 modal.addEventListener('cancel',()=>{
