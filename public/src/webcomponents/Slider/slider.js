@@ -7,7 +7,7 @@ class Slider extends HTMLElement{
 <slot></slot>
         <p>
         <button class="prevBtn">&#10094;</button>
-       <span class="currentPicture">1</span>
+       <span class="currentPicture"></span>
        <div class="slides"></div>
        <button class="nextBtn">&#10095;</button>
 </p>
@@ -24,10 +24,18 @@ class Slider extends HTMLElement{
 }
 /* Slideshow container */
 .total {
-  max-width: 1000px;
+  /*max-width: 1000px;
   position: relative;
-  margin: auto;
+ */
+  margin-left: 20rem;
 }
+/*.slides{
+border: 5px;
+background-color: cadetblue;
+padding-top: 1rem;
+padding-block: 1rem;
+margin: 12rem;
+}*/
 
 /* Next & previous buttons */
 .prevBtn, .nextBtn {
@@ -65,8 +73,8 @@ class Slider extends HTMLElement{
  
 }
 .total img {vertical-align: middle;
-width: 1000px;
-height: 500px;
+width: 600px;
+height: 350px;
 display: flex;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
  overflow: hidden
@@ -138,6 +146,11 @@ console.log('disconnected!')
 
     updateImage(){
 //Slidern von Images
+       const span = this.shadowRoot.querySelector(".slides");
+        const count=document.createElement('div');
+        count.setAttribute('class',"total");
+        count.textContent= ` 1/ ${this.totalImages}`;
+        span.appendChild(count);
         const imageSlide =this.shadowRoot.querySelector('.total');
         this._image= document.createElement('img');
         this._image.src=this.images[this.curent];
@@ -147,7 +160,7 @@ console.log('disconnected!')
 
     }
     preload(i){
-        for (let x=0; x<i.length;x++){
+        /*for (let x=0; x<i.length;x++){
             let img = new Image();
             const slider = this.shadowRoot.querySelector('.slider');
             img = document.createElement('img');
@@ -156,18 +169,19 @@ console.log('disconnected!')
             img.src =i[x];
             img.style.width = '300px';
             img.style.overflow='hidden';
-            //img.style.display='none';
+            //img.style.display='none'
             slider.appendChild(img);
 
             const span = this.shadowRoot.querySelector(".slides");
-            const div=document.createElement('div');
-            div.setAttribute('class',"total");
-            div.textContent= `of ${this.totalImages}`;
-            span.appendChild(div);
+            const count=document.createElement('div');
+            count.setAttribute('class',"total");
+            count.textContent= ` 1/ ${this.totalImages}`;
+            span.appendChild(count);*/
 
-            console.log("next",i[x]);
-         console.log('register clickEventImages',this.totalImages);
-        }
+setTimeout(this.updateImage.bind(this), 100)
+         //    console.log("next",i[x]);
+         // console.log('register clickEventImages',this.totalImages);
+       // }
    }
 }
 customElements.define('ba-slider',Slider)
