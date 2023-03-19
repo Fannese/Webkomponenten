@@ -20,14 +20,32 @@ class Slider extends HTMLElement{
     font-family: sans-serif;
     padding: 2px;
     justify-content: center;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 
 }
 /* Slideshow container */
 .total {
   /*max-width: 1000px;
   position: relative;
- */
-  margin-left: 20rem;
+*/ 
+ margin-left: 10rem;
+}
+
+   
+.slider{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.slides{
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: auto;
 }
 /*.slides{
 border: 5px;
@@ -41,6 +59,7 @@ margin: 12rem;
 .prevBtn, .nextBtn {
   cursor: pointer;
   position: absolute;
+
   top: 100%;
   width: auto;
   padding: 16px;
@@ -56,7 +75,10 @@ margin: 12rem;
 /* Position the "next button" to the right */
 .nextBtn {
   right: 0;
-  border-radius: 3px 0 0 3px;
+ 
+}
+.prevBtn{
+left:0;
 }
 
 /* On hover, add a black background color with a little bit see-through */
@@ -84,8 +106,36 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 /* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prevBtn, .nextBtn {font-size: 11px}
+@media only screen and (max-width: 600px) {
+  .prevBtn, .nextBtn {font-size: 11px;
+  border-radius: 0 1px 1px 0;}
+  .total img{
+  width: 20vh;
+  display: flex;
+  margin-right: 8rem;
+  }
+  .prevBtn {
+    margin-left: 3rem;
+}
+.nextBtn{
+margin-right: 2rem;
+}
+}
+@media only screen and (min-width: 600px) {
+  .prevBtn, .nextBtn {font-size: 15px;
+  border-radius: 0 1px 1px 0;}
+  .total img{
+  width: 400px;
+  display: flex;
+  margin-right: 8rem;
+  }
+  .prevBtn {
+    margin-left: 3rem;
+}
+.nextBtn{
+margin-right: 2rem;
+}
+
 }
 </style>
 `
@@ -149,7 +199,7 @@ console.log('disconnected!')
        const span = this.shadowRoot.querySelector(".slides");
         const count=document.createElement('div');
         count.setAttribute('class',"total");
-        count.textContent= ` 1/ ${this.totalImages}`;
+        //count.textContent= ` 1/ ${this.totalImages}`;
         span.appendChild(count);
         const imageSlide =this.shadowRoot.querySelector('.total');
         this._image= document.createElement('img');

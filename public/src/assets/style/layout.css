@@ -2,8 +2,10 @@ header{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: -0.5rem;
-padding: 2.5rem;
+    margin-top: -0.5rem;
+    margin-right: -20vh;
+    margin-left: -2vh;
+    padding: 2.5rem;
     background-color: purple;
     color: #fff;
     position: sticky;
@@ -36,11 +38,10 @@ img {
     color: #fff;
 }
 
-.card-body{
+body{
 
     justify-content: space-between;
     background-color: powderblue;
-    margin: -1rem;
     display: flex;
     flex-direction: column;
 
@@ -63,13 +64,17 @@ img {
 footer{
     background-color: orange;
     text-align: center;
-    margin: -0.5rem;
     padding: 2rem;
 }
 @media screen and(max-width: 600px) {
 
     header{
        flex-direction: column;
+        display: flex;
+        position: sticky;
+        top: 0;
+        margin-right: -20vh;
+
 
     }
     .logo a{
