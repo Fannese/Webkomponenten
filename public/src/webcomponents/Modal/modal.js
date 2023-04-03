@@ -90,30 +90,16 @@ class Modal extends HTMLElement {
 </div>
 </div>
 `;
+
+    }
+
+    connectedCallback() {
         this.backdrop = this.shadowRoot.querySelector('.modal-backdrop');
         this.modalText = this.shadowRoot.querySelector('.modal');
         const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
         cancelButton.addEventListener('click', this._cancel.bind(this));
         const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
         confirmButton.addEventListener('click', this._confirm.bind(this));
-    }
-
- /*showModal() {
-        const bb = document.createElement('button');
-        const mainSection = document.createElement('section');
-        bb.innerHTML = "Click";
-        bb.addEventListener('click', () => {
-            mainSection.innerHTML = `
-            <slot name="modal-text"></slot>
-            `;
-
-        })
-        this.modalText.appendChild(mainSection);
-        this.backdrop.appendChild(bb);
-    }*/
-
-    connectedCallback() {
-      //this.showModal();
     }
     hide() {
         if (this.hasAttribute('opened')) {

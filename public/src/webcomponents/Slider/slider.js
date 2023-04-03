@@ -149,7 +149,7 @@ margin-right: 2rem;
         this.images[1]="https://i.pinimg.com/originals/27/7f/7d/277f7de296757492750bd3a435040966.jpg";
         this.images[2]="https://i.pinimg.com/originals/57/7e/c5/577ec5279a42b30e3101d698ec51364c.jpg";
         this.totalImages=this.objectLength(this.images)
-        this.preload(this.images);
+        //this.preload(this.images);
         this.curent=0;
         this._nextButton=this.shadowRoot.querySelector('.nextBtn');
         this._prevButton=this.shadowRoot.querySelector('.prevBtn');
@@ -163,6 +163,7 @@ margin-right: 2rem;
 
         this._nextButton.addEventListener('click', this.nextImage.bind(this));
         this._prevButton.addEventListener('click',this.prevImage.bind(this));
+        this.preload(this.images);
 
     }
     disconnectedCallback(){
@@ -210,28 +211,8 @@ console.log('disconnected!')
 
     }
     preload(i){
-        /*for (let x=0; x<i.length;x++){
-            let img = new Image();
-            const slider = this.shadowRoot.querySelector('.slider');
-            img = document.createElement('img');
-            img.setAttribute('alt','image alt');
-            img.setAttribute('class','navbar-brand')
-            img.src =i[x];
-            img.style.width = '300px';
-            img.style.overflow='hidden';
-            //img.style.display='none'
-            slider.appendChild(img);
-
-            const span = this.shadowRoot.querySelector(".slides");
-            const count=document.createElement('div');
-            count.setAttribute('class',"total");
-            count.textContent= ` 1/ ${this.totalImages}`;
-            span.appendChild(count);*/
 
 setTimeout(this.updateImage.bind(this), 100)
-         //    console.log("next",i[x]);
-         // console.log('register clickEventImages',this.totalImages);
-       // }
    }
 }
 customElements.define('ba-slider',Slider)
