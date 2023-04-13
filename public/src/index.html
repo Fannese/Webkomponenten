@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8"/>
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>Web-component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>webcomponent</title>
-    <script src="webcomponents/Dropdown/dropdown.js" type="application/javascript"></script>
-    <script src="webcomponents/Modal/modal.js" type="application/javascript"></script>
-    <script src="webcomponents/Slider/slider.js" type="application/javascript"></script>
+    <script src="webcomponents/Dropdown/dropdown.js"></script>
+    <script src="webcomponents/Modal/modal.js"></script>
+    <script src="webcomponents/Slider/slider.js"></script>
     <link rel="stylesheet" href="assets/style/layout.css">
 </head>
-<style>
-
-</style>
 <body>
 <header>
     <div class="logo">
         <a href="#">
-            <img class="navbar-brand" src="../assets/images/images.png">
+            <img class="navbar-brand" src="../assets/images/images.png" alt="logo">
         </a>
     </div>
     <nav>
         <ul class="nav-menu">
             <li><a class="navbar-brand" href="/index.html">Home</a></li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About me</a>
-            </li>
         </ul>
     </nav>
 </header>
 <div class="card-body">
-    <h1 class="card-title">Fann</h1>
+    <h1 class="card-title">Wilkommen beim FanVergleich</h1>
 
     <h2 class="card-subtitle">Die 6 besten kostenlosen Filmplakate im Jahr 2023.</h2>
-    <section class="card-text">
-    <p>Es gab eine Zeit, da war ich gezwungen, entweder ins Kino zu gehen, um Filme zu sehen,
-        oder sie im Laden zu kaufen. Ich will nicht sagen, dass ich diese Zeit bereut habe, aber ich bin sicher dankbar,
-        dass ich jetzt mehr Auswahl habe, weil ich Filminformationen bequem von meiner Couch aus lesen kann.</p>
-    </section>
-            <ba-slider>
-                <p>Slider</p>
-            </ba-slider>
-
-        <ba-dropdown>
-            <p>
-                öffnen Sie das Dropdown-Menü und wählen Sie ihren
-                passenden Filmplakat aus, viel Spaß!
-            </p>
-        </ba-dropdown>
+    <div>
+        <div class="card-text">
+            <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                no sea takimata sanctus est Lorem ipsum dolor sit amet..</div>
+        </div>
     </div>
+    <ba-slider></ba-slider>
+   <ba-modal></ba-modal>
+
+    <ba-dropdown text="Dropdown Module">
+        <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        </p>
+    </ba-dropdown>
 </div>
-    <footer>
-        Footer
-    </footer>
+<footer>
+    Footer
+</footer>
 
 </body>
 </html>
+<script>
+    const modal = document.querySelector('ba-modal');
+    setInterval(()=>{
+        modal.setAttribute('opened', '');
+    },10000)
+
+    modal.addEventListener('cancel',()=>{
+        console.log('canceled.....')});
+    modal.addEventListener('confirm',()=>{
+        console.log('confirm')})
+</script>

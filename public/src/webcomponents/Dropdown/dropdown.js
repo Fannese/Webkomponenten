@@ -81,7 +81,30 @@ class Dropdown extends HTMLElement {
 .details h2{
    display: flex;
    position: absolute;
-   
+  }
+  @media screen and (max-width: 600px){
+  ::slotted(p) {
+  display: contents;
+  align-items: inherit;
+  font-size: 1rem;
+  font-family: sans-serif;
+   margin: 1rem;
+    }
+   .details{
+  display: grid;
+  padding-top: 5rem
+  }
+  .details p{
+  font-size: 1rem;
+  }
+  .details h2{
+      margin: 1rem;
+  }
+  .details img{
+    width: 20rem;
+  }
+  
+  } 
 </style>
 <slot></slot>
 <div class="dropdown">
@@ -118,6 +141,10 @@ class Dropdown extends HTMLElement {
     connectedCallback() {
 
         this.loadData();
+        this._text=this.getAttribute('text');
+        this._dropdownText=document.createElement('div');
+        this._dropdownText.textContent=this._text
+        this.appendChild(this._dropdownText)
 
     }
 
@@ -131,7 +158,7 @@ class Dropdown extends HTMLElement {
     }
 
     render(items) {
-        const modal = this.shadowRoot.querySelector('ba-modal');
+        //const modal = this.shadowRoot.querySelector('ba-modal');
         const menu = this.shadowRoot.querySelector('.dropdown-menü');
         items.forEach((item) => {
             const link = document.createElement('a');
@@ -139,14 +166,14 @@ class Dropdown extends HTMLElement {
             link.textContent = item.name;
             //console.log('register clickEvent',item);
             link.addEventListener('click', () => {
-                modal.setAttribute('opened', '');
-                modal.addEventListener('cancel',()=>{
-                    console.log('canceled.....');
+                //modal.setAttribute('opened', '');
+                //modal.addEventListener('cancel',()=>{
+                   // console.log('canceled.....');
                     this.details = this.shadowRoot.querySelector('.details');
                     this.details.innerHTML=``;
-                })
-                modal.addEventListener('confirm',()=>{
-                    console.log('confirm');
+                //})
+                //modal.addEventListener('confirm',()=>{
+                    //console.log('confirm');
                     this.details = this.shadowRoot.querySelector('.details');
                     this.details.innerHTML=``;
                     this.filmTitle = document.createElement('h2');
@@ -158,7 +185,7 @@ class Dropdown extends HTMLElement {
                     this.showDetails(item);
                 })
 
-            });
+            //});
 
             menu.appendChild(link);
 

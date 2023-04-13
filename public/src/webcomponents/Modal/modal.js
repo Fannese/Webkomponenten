@@ -10,6 +10,7 @@ class Modal extends HTMLElement {
         padding: 2rem;
         border-bottom: 2px solid #ccc;
         }
+       
          :host([opened]) .modal, 
          :host([opened]) .modal-backdrop{
         opacity: 1;
@@ -28,13 +29,17 @@ class Modal extends HTMLElement {
         
         }
         .modal{
+        display: flex;
+    flex-direction: column;
+        /*translate: 150%;
+        transition: 5s;*/
         opacity: 0;
         pointer-events: none;
         position: fixed;
-        top: 10vh;
+        top: 25vh;
         left: 25%;
-        width: 30%;
-        height: 30rem;
+        width: 50%;
+       
         z-index: 100;
         background-color: orange;
         border-radius: 3px;
@@ -78,10 +83,21 @@ class Modal extends HTMLElement {
 </style>
 <div class="modal-backdrop">
 <div class="modal">
-<header><slot name="modal-title"></slot></header>
+<header><slot name="modal-title"><button id="close" style="float: right; margin: 5px; background-color: orange">
+      x</button>
+<h2>Bitte bestätigen um Details anzusehen!</h2>
 
+</slot></header>
 <section>
-<slot name="modal-text"></slot>
+              
+                <p slot="modal-text">
+                    We and our partners store and/or access information on a device, such as cookies 
+                    and process personal data, such as unique identifiers and standard information sent by 
+                    a device for personalised ads and content, ad and content measurement, and audience insights,
+                     as well as to develop and improve products. With your permission we and our partners may use
+                      precise geolocation data and identification through device scanning. You may click to consent 
+                      to our and our partners’ processing as described above. 
+                </p>
 </section>
 <section id="actions">
         <button id="cancel-btn">Cancel</button>
@@ -96,12 +112,15 @@ class Modal extends HTMLElement {
     connectedCallback() {
         this.backdrop = this.shadowRoot.querySelector('.modal-backdrop');
         this.modalText = this.shadowRoot.querySelector('.modal');
+        const close= this.shadowRoot.querySelector('#close');
         const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
+        close.addEventListener('click',this._cancel.bind(this));
         cancelButton.addEventListener('click', this._cancel.bind(this));
         const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
         confirmButton.addEventListener('click', this._confirm.bind(this));
     }
     hide() {
+
         if (this.hasAttribute('opened')) {
             this.removeAttribute('opened');
         }

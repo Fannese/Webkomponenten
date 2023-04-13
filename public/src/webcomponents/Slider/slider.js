@@ -5,12 +5,11 @@ class Slider extends HTMLElement{
       this.shadowRoot.innerHTML=`
       <div class="slider">
 <slot></slot>
-        <p>
         <button class="prevBtn">&#10094;</button>
        <span class="currentPicture"></span>
        <div class="slides"></div>
        <button class="nextBtn">&#10095;</button>
-</p>
+
 </div>
 <style>
 ::slotted(p){
@@ -40,6 +39,10 @@ class Slider extends HTMLElement{
 display: flex;
 flex-direction: column;
 align-items: center;
+padding: 0px 0;
+margin: 0;
+justify-self: center;
+
 }
 .slides{
 display: flex;
@@ -95,11 +98,11 @@ left:0;
  
 }
 .total img {vertical-align: middle;
-width: 600px;
-height: 350px;
-display: flex;
+width: 50rem;
+height: 30rem;
+
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
- overflow: hidden
+
 }
 .navbar-brand img{
 
@@ -107,20 +110,27 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 600px) {
-  .prevBtn, .nextBtn {font-size: 11px;
-  border-radius: 0 1px 1px 0;}
   .total img{
-  width: 20vh;
-  display: flex;
+  width: 15rem;
   margin-right: 8rem;
   }
-  .prevBtn {
-    margin-left: 3rem;
-}
-.nextBtn{
-margin-right: 2rem;
-}
-}
+  .slides{
+ 
+  margin: 0rem;
+  
+  }
+   .nextBtn{
+    position: absolute;
+    top: 125%;
+    margin-right: 0rem
+  }
+  .prevBtn{
+    margin-left: 0rem;
+    position: absolute;
+    top: 125%;
+  }
+  }
+/*}
 @media only screen and (min-width: 600px) {
   .prevBtn, .nextBtn {font-size: 15px;
   border-radius: 0 1px 1px 0;}
@@ -136,7 +146,7 @@ margin-right: 2rem;
 margin-right: 2rem;
 }
 
-}
+}*/
 </style>
 `
       ;
@@ -155,15 +165,16 @@ margin-right: 2rem;
         this._prevButton=this.shadowRoot.querySelector('.prevBtn');
         this._currentPicture=this.shadowRoot.querySelector('.slides');
        this._image=this.shadowRoot.querySelector('.currentImage');
+       this.tex="some one"
+
 
 
     }
 
     connectedCallback(){
-
-        this._nextButton.addEventListener('click', this.nextImage.bind(this));
-        this._prevButton.addEventListener('click',this.prevImage.bind(this));
-        this.preload(this.images);
+    this._nextButton.addEventListener('click', this.nextImage.bind(this));
+    this._prevButton.addEventListener('click',this.prevImage.bind(this));
+    this.preload(this.images);
 
     }
     disconnectedCallback(){
