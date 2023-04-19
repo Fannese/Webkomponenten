@@ -10,6 +10,37 @@
     <script src="webcomponents/Slider/slider.js"></script>
     <link rel="stylesheet" href="assets/style/layout.css">
 </head>
+<style>
+    @media screen and(max-width: 600px) {
+        header{
+            flex-direction: column;
+            display: flex;
+            position: sticky;
+            top: 0;
+            margin-right: -20vh;
+        }
+        .card-text{
+            font-size: 1rem;
+            margin: 1rem;
+        }
+        .logo a{
+            font-size: 1.5rem;
+        }
+        .nav-menu{
+            display: none;
+        }
+        .nav-menu li{
+            display:block;
+            margin: 0;
+            border-bottom: 1px solid #fff;
+        }
+        .nav-menu a{
+
+            padding: 10px 0;
+        }
+
+    }
+</style>
 <body>
 <header>
     <div class="logo">
@@ -24,7 +55,7 @@
     </nav>
 </header>
 <div class="card-body">
-    <h1 class="card-title">Wilkommen beim FanVergleich</h1>
+    <h1 class="card-title">Willkommen beim FanVergleich</h1>
 
     <h2 class="card-subtitle">Die 6 besten kostenlosen Filmplakate im Jahr 2023.</h2>
     <div>

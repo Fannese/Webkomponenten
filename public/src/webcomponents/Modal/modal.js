@@ -73,6 +73,14 @@ class Modal extends HTMLElement {
          border-top: 1px solid #ccc;
          
          }
+         p{
+         text-align: justify;
+         margin: 1rem;
+         }
+         h2{
+         display: flex;
+         justify-content: center;
+         }
          @media screen and(min-width: 600px) {
          .modal{
           height: 60rem;
@@ -85,7 +93,7 @@ class Modal extends HTMLElement {
 <div class="modal">
 <header><slot name="modal-title"><button id="close" style="float: right; margin: 5px; background-color: orange">
       x</button>
-<h2>Bitte bestätigen um Details anzusehen!</h2>
+<h2>Wilkommen beim FanVergleich</h2>
 
 </slot></header>
 <section>
@@ -100,8 +108,8 @@ class Modal extends HTMLElement {
                 </p>
 </section>
 <section id="actions">
-        <button id="cancel-btn">Cancel</button>
-        <button id="confirm-btn">Ok</button>
+        <button id="cancel-btn">Ok</button>
+       <!-- <button id="confirm-btn">Ok</button>-->
 </section>
 </div>
 </div>

@@ -48,8 +48,8 @@ class Dropdown extends HTMLElement {
     display: block;
 }
 ::slotted(p){
-    border: 2px;
-    text-align: center;
+ 
+    margin: 2.5rem;
     font-size: 1.5rem;
     font-family: sans-serif;
     padding: 2px;
@@ -59,28 +59,28 @@ class Dropdown extends HTMLElement {
 .details{
     justify-content: space-between;
     flex-direction: row-reverse;
-    display: flex;
     align-self: center;
+    padding-top: 5rem;
 }
 .details img{
+    justify-content: center;
     width: 480px;
     height: 500px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     margin: 2.5rem;
-    
-
+    display: flex;
 }
 .details p{
     align-items: center;
     display: flex;
     margin: 1.5rem;
-    padding-top: 5rem;
     font-size: 1.5rem;
  
 }
 .details h2{
+justify-content: center;
    display: flex;
-   position: absolute;
+  
   }
   @media screen and (max-width: 600px){
   ::slotted(p) {
@@ -144,12 +144,12 @@ class Dropdown extends HTMLElement {
         this._text=this.getAttribute('text');
         this._dropdownText=document.createElement('div');
         this._dropdownText.textContent=this._text
+        this._dropdownText.style="justify-content:center;display: flex;padding-top: 2rem";
         this.appendChild(this._dropdownText)
 
     }
 
     async loadData() {
-        // console.log("data");
         const resp = await fetch("../webcomponents/Dropdown/service.json")
             .then(response => response.json());
         console.log(resp);

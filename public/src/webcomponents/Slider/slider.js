@@ -77,11 +77,11 @@ margin: 12rem;
 
 /* Position the "next button" to the right */
 .nextBtn {
-  right: 0;
+  right: 10rem;
  
 }
 .prevBtn{
-left:0;
+left:20rem;
 }
 
 /* On hover, add a black background color with a little bit see-through */
@@ -122,10 +122,10 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
    .nextBtn{
     position: absolute;
     top: 125%;
-    margin-right: 0rem
+    right: 0rem;
   }
   .prevBtn{
-    margin-left: 0rem;
+    left: 2rem;
     position: absolute;
     top: 125%;
   }
