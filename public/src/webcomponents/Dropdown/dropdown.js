@@ -2,7 +2,7 @@ class Dropdown extends HTMLElement {
     constructor() {
         super();
         console.log('fineee');
-        this.attachShadow({mode: 'open'});
+        this.attachShadow({mode: 'closed'});
         this.shadowRoot.innerHTML = `
 <style>
 .dropdown{
@@ -119,27 +119,11 @@ justify-content: center;
 <p></p>
 
 </div>
-<ba-modal>
- <h2 slot="modal-title">Bitte bestätigen um Details anzusehen!</h2>
-                <p slot="modal-text">
-                    We and our partners store and/or access information on a device, such as cookies 
-                    and process personal data, such as unique identifiers and standard information sent by 
-                    a device for personalised ads and content, ad and content measurement, and audience insights,
-                     as well as to develop and improve products. With your permission we and our partners may use
-                      precise geolocation data and identification through device scanning. You may click to consent 
-                      to our and our partners’ processing as described above. Alternatively you may click to refuse 
-                      to consent or access more detailed information and change your preferences before consenting. 
-                      Please note that some processing of your personal data may not require your consent, but you have
-                       a right to object to such processing. Your preferences will apply to this website only.
-                     You can change your preferences at any time by returning to this site or visit our privacy policy.
-                </p>
-</ba-modal>
        `;
 
     }
 
     connectedCallback() {
-
         this.loadData();
         this._text=this.getAttribute('text');
         this._dropdownText=document.createElement('div');
@@ -158,22 +142,12 @@ justify-content: center;
     }
 
     render(items) {
-        //const modal = this.shadowRoot.querySelector('ba-modal');
         const menu = this.shadowRoot.querySelector('.dropdown-menü');
         items.forEach((item) => {
             const link = document.createElement('a');
             link.setAttribute('href', "#");
             link.textContent = item.name;
-            //console.log('register clickEvent',item);
             link.addEventListener('click', () => {
-                //modal.setAttribute('opened', '');
-                //modal.addEventListener('cancel',()=>{
-                   // console.log('canceled.....');
-                    this.details = this.shadowRoot.querySelector('.details');
-                    this.details.innerHTML=``;
-                //})
-                //modal.addEventListener('confirm',()=>{
-                    //console.log('confirm');
                     this.details = this.shadowRoot.querySelector('.details');
                     this.details.innerHTML=``;
                     this.filmTitle = document.createElement('h2');
@@ -183,9 +157,7 @@ justify-content: center;
                     this.shadowRoot.querySelector('.details').appendChild(this.detailDescription);
                     this.shadowRoot.querySelector('.details').appendChild(this.filmImage);
                     this.showDetails(item);
-                })
-
-            //});
+            })
 
             menu.appendChild(link);
 
@@ -198,10 +170,6 @@ justify-content: center;
         this.filmTitle.textContent = item.title;
         this.filmImage.src = item.image;
         this.detailDescription.textContent = item.description;
-    }
-
-    disconnectedCallback() {
-        // this.loadData();
     }
 }
 
